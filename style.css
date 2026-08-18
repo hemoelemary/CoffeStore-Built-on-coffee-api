@@ -1,0 +1,132 @@
+*{
+            transition:all 1s ease;
+        }
+        @font-face{
+            font-family:'Defonte';;
+            src:url('DeFonte.ttf') format('truetype');
+
+        }
+        .defo{
+            font-family: 'Defonte';
+        }
+
+        
+        .fo2 {
+            font-family: "Sekuya", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+      
+        .beige{
+            color:#c0aa83;
+        }
+        .fo{
+            font-family: "Archivo Black", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color:black;   
+        }
+        a:hover{
+            color:#c0aa83;
+        }
+        a:hover{
+            color:#c0aa83;
+        }
+        #hero{
+            margin-top:10px;
+            background-image: url('https://coffeeking.like-themes.com/wp-content/uploads/2017/09/beans-1.png');
+            background-position: center center;
+            background-size: cover;
+        }
+        .img{
+            background-image: url('https://png.pngtree.com/png-vector/20250220/ourmid/pngtree-3d-model-of-a-coffee-bag-png-image_15538364.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width:500px;
+            padding-right: 100px;
+            height: 300px;
+            margin-top:33px;
+        }
+        .img2{
+            background-image: url('https://freepngimg.com/save/30384-coffee-cup-hd/2692x4180');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width:500px;
+            padding-right: 100px;
+            height: 300px;
+        }
+        .heading{
+            padding:100px
+        }
+        .bg-beige{
+            background-color: #c0aa83;
+        }
+        .btn:hover{
+            background-color:white !important;
+            color:black !important;
+            border:1px solid black;
+        }
+        header{
+            background-color: white;
+        }
+        #about{
+            
+            background-color: #242424;
+        }
+        .bg-lidark{
+            background-color: #242424;
+        
+        }
+        .col-6{
+            margin-bottom: 37px;
+        }
+        .choice:hover{
+            border-bottom: 2px solid #c0aa83;
+            transition:none;
+        }
+        .bottom-beige{
+            border-bottom: 2px solid #c0aa83;
+            
+        }
+        .card:hover{
+            box-shadow:0 10px 20px 20px rgba(0, 0, 0, 0.15);
+            border:1px solid #c0aa83;
+        }
+        label{
+            margin-bottom: 10px;
+        }
+        .context{
+            font-size: 90px;
+        }
+        html, body {
+        overflow-x: hidden;
+    }
+        @media(max-width:670px){
+            .img,.img2{
+                margin:0;
+                padding:0;
+            }
+            .heading{
+                padding:50px;
+            }
+            .context{
+            font-size: 30px;
+        }
+        .cc{
+            text-align:center
+        }
+        .ww{
+            width:155.5px;
+            margin-bottom: 10px;
+        }
+        }
+        

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero{
+            background-image: url('https://coffeeking.like-themes.com/wp-content/uploads/2017/09/inner_parallax.jpg') !important;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 200px;
+        }
+       .btn:hover{
+        color:green !important;
+       }
+       a:hover{
+        cursor:pointer;
+       }
+       input[type='range']{
+        accent-color:#c0aa83;
+        background-color: white;
+       }
+       .buy{
+        position: fixed;
+        right:0;
+        z-index:1   
+       }
+    </style>
+</head>
+<body>
+    <header class="p-4 sticky-top border border-bottom">
+        <nav class="d-flex flex-column flex-md-row align-items-md-center ">
+            <div class="logo fw-bolder fw-bolder fs-5 flex-grow-1 mb-2 me-2 fo align-self-center"><i class="bi bi-cup-hot-fill mx-2 beige fs-3"></i>CoffeeStore</div>
+            <ul class="d-flex flex-grow-1 justify-content-evenly align-items-center mb-0 fw-bolder fo p-0">
+                <li class=""><a href="index.html">Home</a></li>
+                <li class=""><a href="index.html">About</a></li>
+                <li class=""><a href="#">Products</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="d-flex justify-content-between align-items-center h-100 mx-3">
+                <div class="fs-1 text-white defo px-5">
+                    All Products
+                    <div class="fs-5 defo ">
+                        <a href="index.html" class="text-white fs-5">Home</a> 
+                      <i class="bi bi-arrow-right next"></i>
+                    Products
+                </div>
+                </div>
+                <div class="defo btn justify-self-end text-danger border rounded-pill bg-white p-2 buy w-25">Buy My Template for $$</div>
+            </div>
+        </section>
+        <section>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-5 col-md-2">
+                        <div class="d-flex flex-column">
+                            <div class="fw-bolder fs-3 fo">Cart</div>
+                            <hr>
+                            <div class="text-secondary cart">No Products In Cart</div>
+                            <div class="conditionbtn"></div>
+                            <div class="fw-bolder fs-3 fo mt-2">Categories</div>
+                            <hr>
+                            <div class="text-secondary">
+                                <i class="bi bi-arrow-right next"></i>
+                                <a class="fw-bolder" id="all" style="cursor:pointer">All</a>
+                                <br>
+                                <i class="bi bi-arrow-right next"></i>
+                                <a id="hot" style="cursor:pointer">Hot</a>
+                                <br>
+                                <i class="bi bi-arrow-right next"></i>
+                                <a id="cold" style="cursor:pointer">Cold</a>
+                                
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-10">
+                        <div class="text-secondary">Showing All Results</div>
+                        <div class="d-flex gap-4 mt-4 flex-wrap justify-content-around results">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist/jquery.min.js"></script>
+
+<script>
+    let content=''
+    $.when(
+        $.get('https://api.sampleapis.com/coffee/hot'),
+        $.get('https://api.sampleapis.com/coffee/iced')
+    ).done(
+        function(hot,iced){
+            const hotprods = hot[0];
+            const coldprods = iced[0]
+            for(let i =0;i<21;i++){
+                content+=`
+                 <div class="card" style="width:270px;">
+                     <img class="card-img-top" src='${hotprods[i]['image']}'/>
+                     <div class="card-body d-flex flex-column ">
+                         <div class="card-title fs-4 fo text-center ">${hotprods[i]['title']}</div>
+                         <div class="card-text m-auto text-secondary">${hotprods[i]['description']}</div>
+                         <div class='fs-1 price text-center fw-bolder'>50$</div>
+                         <div class='btn bg-dark text-white d-block fo justify-self-end add' name='${hotprods[i]['title']}'>Buy</div>
+                         </div>
+                 </div>
+                    
+             `
+            }
+            for(let i =0;i<coldprods.length;i++){
+                content+=`
+                 <div class="card" title="${coldprods[i]['title']}" style="width:270px;">
+                     <img class="card-img-top" src='${coldprods[i]['image']}'/>
+                     <div class="card-body d-flex flex-column ">
+                         <div class="card-title fs-4 fo text-center ">${coldprods[i]['title']}</div>
+                         <div class="card-text m-auto text-secondary">${coldprods[i]['description']}</div>
+                         <div class='fs-1 price text-center fw-bolder'>50$</div>
+                         <div class='btn bg-dark text-white d-block fo justify-self-end add' name='${coldprods[i]['title']}'>Buy</div>
+                         </div>
+                 </div>
+                    
+             `
+            }
+            $('.results').html(content)
+            $('[title="Cold Brew"],[title="Iced Espresso"]').remove()
+        }
+    )
+    
+    let con = '';
+    let c = [];
+    $(document).on('click','.add',function(){
+        let name = $(this).attr('name');
+        c.push(name);
+        con='';
+        for(let i=0;i<c.length;i++){
+        con += `
+            <div class='text-secondary cartprod d-flex justify-content-between' name=${name}>
+                <p>${c[i]}</p>
+                <span class='delitem' name=${c[i]}>x</span>
+                </div>
+        `
+
+        }
+        
+        
+        $('.cart').html(con)
+        if(con){
+            $('.conditionbtn').addClass('btn btn-dark m-4 empty').text('Empty Cart')
+        }
+    })
+    $(document).on('click','.empty',function(){
+        con='';
+        c = [];
+        $('.cart').html('No Products In Cart')
+        $('.conditionbtn').removeClass('btn btn-dark m-4 empty').text('')
+    })
+    $(document).on('click','.delitem',function(){
+        $(this).parent('.cartprod').remove()
+        let numofprod = c.indexOf(
+        $(this).parent('.cardprod').attr('name')
+        )
+        c.splice(numofprod,1)
+
+        if($('.cart').html() == false){
+            con=''; 
+            $('.cart').html('No Products In Cart')
+        $('.conditionbtn').removeClass('btn btn-dark m-4 empty').text('')
+
+        }
+})
+let hotco='';
+let coldco='';
+$('#hot').on('click',()=>{
+    $.get('https://api.sampleapis.com/coffee/hot',function(data){
+        for(let i =0;i<21;i++){
+        hotco+=`
+                 <div class="card" style="width:270px;">
+                     <img class="card-img-top" src='${data[i]['image']}'/>
+                     <div class="card-body d-flex flex-column ">
+                         <div class="card-title fs-4 fo text-center ">${data[i]['title']}</div>
+                         <div class="card-text m-auto text-secondary">${data[i]['description']}</div>
+                         <div class='fs-1 price text-center fw-bolder'>50$</div>
+                         <div class='btn bg-dark text-white d-block fo justify-self-end add' name='${data[i]['title']}'>Buy</div>
+
+                         </div>
+                 </div>
+                    
+             `}
+    $('.results').html(hotco)
+    $("#all").removeClass('fw-bolder')
+    $("#hot").addClass('fw-bolder');
+    $('#cold').removeClass("fw-bolder");
+    })
+    
+})
+$('#cold').on('click',()=>{
+    $.get('https://api.sampleapis.com/coffee/iced',function(data){
+        for(let i =0;i<data.length;i++){
+        coldco+=`
+                 <div class="card" title="${data[i]['title']}" style="width:270px;">
+                     <img class="card-img-top" src='${data[i]['image']}'/>
+                     <div class="card-body d-flex flex-column ">
+                         <div class="card-title fs-4 fo text-center ">${data[i]['title']}</div>
+                         <div class="card-text m-auto text-secondary">${data[i]['description']}</div>
+                         <div class='fs-1 price text-center fw-bolder'>50$</div>
+                         <div class='btn bg-dark text-white d-block fo justify-self-end add' name='${data[i]['title']}'>Buy</div>
+
+                         </div>
+                 </div>
+                    
+             `
+            }
+    $('.results').html(coldco)     
+    $("#all").removeClass('fw-bolder')
+    $("#cold").addClass('fw-bolder');
+    $('#hot').removeClass("fw-bolder");
+    $('[title="Cold Brew"],[title="Iced Espresso"]').remove()
+
+    })
+})
+$('#all').on('click',()=>{
+    $('.results').html(content)
+    $('[title="Cold Brew"],[title="Iced Espresso"]').remove()
+    $("#all").addClass('fw-bolder')
+    $("#cold").removeClass('fw-bolder');
+    $('#hot').removeClass("fw-bolder");
+        
+})
+</script>
+</body>
+
+</html>
